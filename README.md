@@ -629,7 +629,11 @@ The bot calculated:
 
 ### Pebbles: Fixed Fair-Value Basket Strategy
 
-Pebbles was treated as a basket with a total fair value of about **50,000**.
+Pebbles was treated as a basket with a total fair value of about **50,000** when adding all the products together.
+
+<img src="content.png" width="500">
+
+this looked attractive for market making
 
 The idea was:
 
