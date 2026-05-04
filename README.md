@@ -154,7 +154,7 @@ if price breaks trend sharply:
 
 This let the bot ride the trend while still having emergency downside protection.
 ### Charts for both assets:
-![Chart](image.png)
+![Chart](assets/image.png)
 
 
 
@@ -335,7 +335,7 @@ The mistake was the fair-value equation.
 
 I used a **modified Black-Scholes implied-volatility equation**, but it was not good enough for this market. It looked reasonable in theory, but it did not trade well.
 
-<img src="Screenshot%202026-05-04%20165644.png" width="500">
+<img src="assets/Screenshot%202026-05-04%20165644.png" width="500">
 
 The problem was that the Velvet Fruit Extract options did not behave like clean textbook Black-Scholes options. 
 
@@ -411,7 +411,7 @@ In Round 4, I added **variance** into the fair-value calculation.
 
 That was the real fix.
 
-<img src="Screenshot%202026-05-04%20165658.png" width="500">
+<img src="assets/Screenshot%202026-05-04%20165658.png" width="500">
 
 Adding variance made the model much more realistic. The model started reacting to real significant movement and not just noise.
 
@@ -432,7 +432,7 @@ modified Black-Scholes fair value + variance adjustment
 ```
 ### Here is the Fair IV over the Contracts IV (according to our varienced black scholes model)
 
-<img src="zoomed_contract_iv_and_black_scholes_iv_5000_5500.png" width="500">
+<img src="assets/zoomed_contract_iv_and_black_scholes_iv_5000_5500.png" width="500">
 
 As you can see in the chart above the aim was to trade the mispricings of the contracts implied volatility back to what the equasion considers as fair value
 
@@ -627,7 +627,7 @@ The bot calculated:
 
 Pebbles was treated as a basket with a total fair value of about **50,000** when adding all the products together.
 
-<img src="content.png" width="500">
+<img src="assets/content.png" width="500">
 
 this looked attractive for market making
 
