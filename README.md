@@ -337,13 +337,15 @@ The mistake was the fair-value equation.
 
 I used a **modified Black-Scholes implied-volatility equation**, but it was not good enough for this market. It looked reasonable in theory, but it did not trade well.
 
-The problem was that the Velvet Fruit Extract options did not behave like clean textbook Black-Scholes options. The equation was too simple. It did not capture the actual movement and uncertainty in the underlying well enough.
+<img src="Screenshot%202026-05-04%20165644.png" width="500">
+
+The problem was that the Velvet Fruit Extract options did not behave like clean textbook Black-Scholes options. 
 
 So even though the delta hedge helped isolate implied volatility, the IV model itself was still weak. The options side gave bad signals and ended up negative.
 
 That meant Round 3 only ended around **+1,000 XIRECs** because the market making on Velvet Fruit Extract and Hydrogel Packs recovered the losses.
 
-But because the fair-value equation was weak, I could not fully trust the signal. The trade idea was sensible, but the model behind it was not strong enough yet.
+But because the fair-value equation was weak and did not include varience, alot of IV noise triggered low quality entries, this was later solved by accountiung for varience in Implied volatility
 
 ### Results
 
@@ -411,15 +413,15 @@ In Round 4, I added **variance** into the fair-value calculation.
 
 That was the real fix.
 
-Options are all about movement. If the underlying moves around a lot, the option should be worth more. If the model does not account for that properly, it will misprice the whole chain.
+<img src="Screenshot%202026-05-04%20165658.png" width="500">
 
-We were still **delta hedging** the options with Velvet Fruit Extract. That was important because the goal was to trade implied volatility, not just take a directional bet on the underlying or on raw option prices.
+Options are about movement. If the underlying moves around a lot, the option should be worth more. If the model does not account for that properly, it will misprice the whole chain as what happened in round 3.
 
-Delta hedging helped isolate the IV edge. Then the variance-adjusted equation made that IV edge much more accurate.
+We were still **delta hedging** the options with Velvet Fruit Extract. 
 
 Adding variance made the model much more realistic. It stopped treating the market like a perfect textbook example and started reacting to how Velvet Fruit Extract actually moved.
 
-This made a huge difference. Round 3 made about **1,000 XIRECs**, and the options side was negative. Round 4 made about **10,000 XIRECs** because the model finally understood the options better.
+This made a huge difference. Round 3 made about **1,000 XIRECs**, and the options side was negative. Round 4 made about **10,000 XIRECs** because the model understood the options better.
 
 The model changed from:
 
@@ -433,7 +435,7 @@ to:
 modified Black-Scholes fair value + variance adjustment
 ```
 
-That gave a much better IV edge.
+That gave a better IV edge.
 
 ### Rich-IV Strategy
 
