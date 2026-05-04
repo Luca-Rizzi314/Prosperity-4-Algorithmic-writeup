@@ -786,7 +786,10 @@ Round 3 taught me that a model can sound right and still trade badly if it does 
 Round 4 showed how improving the model with variance and trade data could make the same idea much stronger.  
 Round 5 showed that a final bot is really a portfolio of strategies, not one single strategy.  
 The best improvements came from making the logic simpler, cleaner, and easier to explain.  
-The final takeaway was: know why the trade works, know how big it should be, and know when to get out.
+
+
+
+---
 
 
 
