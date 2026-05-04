@@ -4,7 +4,7 @@
 
 IMC Prosperity 4 was a fictional space-themed trading competition where we traded planetary products and tried to earn as many **XIRECs** as possible.
 
-Even though the assets were made up, the trading problems were realistic. We had to deal with market making, bid-ask spreads, fair value, options pricing, implied volatility, delta hedging, mean reversion, trend following, bundle relationships, position limits, sizing, risk control, and overfitting.
+Even though the assets were made up, the trading problems were realistic. We had to deal with market making, bid-ask spreads, fair value, options pricing, mean reversion, bundle relationships and overfitting.
 
 For each round, IMC gave us **three days of previous market data** to research and test on. They also gave us a backtester with only a small slice of the next day, around **10% of Day 4**, so we could sanity-check the bot before submission.
 
@@ -12,8 +12,8 @@ For the actual scoring, the trading algorithm was tested on hidden full evaluati
 
 For the algorithmic challenge, we submitted a Python bot that read market data and placed buy/sell orders.
 
-- **Round 1:** trading groundwork on Intara.
-- **Round 2:** same products, plus the Market Access Fee auction.
+- **Round 1:** trading ash coated osmium and intarian pepper root.
+- **Round 2:** same products as round 1, plus the Market Access Fee auction.
 - **Round 3:** Velvet Fruit Extract options book.
 - **Round 4:** trade data from market makers, retail traders, and informed traders.
 - **Round 5:** 50 different products across 10 bundles.
@@ -54,8 +54,6 @@ The charts helped classify products and check whether the bot traded correctly.
 I used AI as a research, coding, and writing assistant.  
 It helped brainstorm strategies, debug code, and compare versions.  
 It was useful for explaining option pricing and organizing ideas.  
-It also helped turn the strategy work into a clear write-up.  
-The final trading decisions still came from testing, logic, and results.
 
 ---
 
@@ -190,14 +188,14 @@ This let us bid for **25% more quotes in the order book**. If our bid was accept
 
 | Asset | Position Limit | Strategy |
 |---|---:|---|
-| Ash-Coated Osmium | 80 | Anchored moving-average strategy |
+| Ash-Coated Osmium | 80 | Market Making |
 | Intarian Pepper Root | 80 | Buy-and-hold / extreme trend following |
 
 ### Strategy Refinement
 
 The product strategies stayed similar to Round 1.
 
-For **Ash-Coated Osmium**, I continued using the anchored moving-average idea. The bot smoothed prices, watched for breaks above or below the average, and traded those moves.
+For **Ash-Coated Osmium**, I continued using the market making strategy from round 1 with a few changes
 
 For **Intarian Pepper Root**, I kept the buy-and-hold / extreme trend-following idea. Since the product kept moving upward in a very artificial and steady way, the bot stayed with the trend unless the flash-dump rule triggered.
 
