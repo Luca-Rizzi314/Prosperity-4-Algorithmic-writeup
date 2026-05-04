@@ -598,19 +598,19 @@ The final bot used specialized modules for the bundles where I found stronger st
 
 Specialized modules were used for:
 
-- Panel;
-- Pebbles;
-- Robots;
-- Snack Pack;
-- Oxygen Shake;
-- Galaxy Sounds.
+- Panel
+- Pebbles
+- Robots
+- Snack Pack
+- Oxygen Shake
+- Galaxy Sounds
 
 Generic market making was used for:
 
-- Microchip;
-- Sleep Pod;
-- Translator;
-- UV Visor.
+- Microchip
+- Sleep Pod
+- Translator
+- UV Visor
 
 
 ### Panel: Defensive Trend Following
@@ -635,13 +635,13 @@ The idea was:
 
 ```text
 if the full basket is cheap:
-    buy all Pebbles legs together
+    buy all Pebbles products together
 
 if the full basket is rich:
-    sell all Pebbles legs together
+    sell all Pebbles products together
 
 if there is no full-basket opportunity:
-    market make each Pebble around synthetic fair value
+    market make each Pebble product around the fair value
 ```
 
 The synthetic fair value for one Pebble was based on:
@@ -676,7 +676,7 @@ Each Robot product was quoted from a synthetic fair value based on the basket an
 
 
 
-### Snack Pack v5: Hybrid Pair and Triad Strategy
+### Snack Pack: Hybrid Pair and Triad Strategy
 
 Snack Pack had two separate behaviours.
 
@@ -692,7 +692,7 @@ Pistachio / Strawberry → active triad mean reversion
 Raspberry → defensive only
 ```
 
-### Oxygen Shake v7: Basket Fade plus SnackPack Lead-Lag
+### Oxygen Shake: Basket Fade plus SnackPack Lead-Lag
 
 Oxygen traded passively.
 
@@ -700,8 +700,8 @@ It combined:
 
 1. Oxygen basket shock fade.
 2. SnackPack lead-lag context.
-3. Own-move fade for Chocolate and Evening Breath.
-4. Soft dynamic-risk edge widening.
+3. Own-move fade for Chocolate and oxygens Evening Breath product.
+5. Soft dynamic-risk edge widening.
 
 Simple idea:
 
@@ -711,14 +711,13 @@ negative expected Oxygen move → lower fair value and favour asks
 ```
 
 
-### Galaxy Sounds v3: Ring7 Even-Size Passive Market Making
+### Galaxy Sounds: Even-Size Passive Market Making
 
 Galaxy Sounds used a simple passive market-making module.
 
 The goal was to avoid over-filtering and keep the strategy clean.
 
-
-Planetary Rings used a wider edge because it needed more protection.
+The Planetary Rings used a wider edge because it needed more protection.
 
 Quote size depended on Galaxy basket shock strength:
 
@@ -729,46 +728,20 @@ Galaxy did **not** use active crossing. It stayed passive.
 
 The generic market-making module traded:
 
-- Microchip;
-- Sleep Pod;
-- Translator;
-- UV Visor.
+- Microchip
+- Sleep Pod
+- Translator
+- UV Visor
 
-These products used bundle-aware passive market making around the current mid.
-
-Generic MM settings:
-
-```text
-Microchip edge  = 2
-Sleep Pod edge  = 2
-Translator edge = 2
-UV Visor edge   = 4
-base size       = 3
-```
+These products used bundle-aware passive market making around the current mid price.
 
 The strategy did not cross the spread for entry. It quoted passively around fair value.
-
-
-
-### Candlestick Chart Appendix
-
-I also created a PDF with candlestick charts for all 50 Round 5 products.
-
-The charts show the products across **Day 2, Day 3, and Day 4**, with each candle built from **100 timestamps**.
-
-This PDF should be attached as the chart appendix:
-
-```text
-round5_all_products_candlestick_charts (3).pdf
-```
-
----
 
 ### Results
 
 | Metric | Result |
 |---|---:|
-| Round 5 algorithmic PnL | [FILL IN] |
+| Round 5  PnL | [FILL IN] |
 | Final Round 5 rank | [FILL IN] |
 
 ---
@@ -776,14 +749,24 @@ round5_all_products_candlestick_charts (3).pdf
 # Final Lessons Learned
 
 Overall, the biggest lesson from IMC Prosperity 4 was that a strong algorithm needs more than a good signal.  
-Each product needed the right strategy: market making, mean reversion, trend following, basket trading, or options pricing.  
+
+Each product needed the right strategy: market making, mean reversion, trend following, basket trading, ect..
+
 Backtests were useful, but they were not enough, because a strategy could look good on old data and fail on hidden data.  
+
 Fair value was the core idea across every round, whether I was quoting spreads, pricing options, or comparing basket products.  
+
 Risk control mattered just as much as profit, especially with position limits, inventory, delta hedging, and sizing.  
-Round 3 taught me that a model can sound right and still trade badly if it does not fit the actual market.  
+
+Round 3 taught me that a model can sound right and still trade badly if it does not fit the actual market conditions.  
+
 Round 4 showed how improving the model with variance and trade data could make the same idea much stronger.  
+
 Round 5 showed that a final bot is really a portfolio of strategies, not one single strategy.  
+
 The best improvements came from making the logic simpler, cleaner, and easier to explain.  
+
+I really enjoyed this years competition, i learned alot and understood what its like to build a thesis and execute on it
 
 
 
