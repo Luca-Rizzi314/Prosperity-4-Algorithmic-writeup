@@ -94,28 +94,32 @@ This round was about building the first real trading bot and proving that we cou
 
 | Asset | Position Limit | Strategy |
 |---|---:|---|
-| Ash-Coated Osmium | 80 | Anchored moving average |
+| Ash-Coated Osmium | 80 | Market Making |
 | Intarian Pepper Root | 80 | Buy-and-hold / extreme trend following |
 
-### Ash-Coated Osmium Strategy
+## Ash-Coated Osmium Strategy
 
-For **Ash-Coated Osmium**, I did not use one fixed fair value.
+For **Ash-Coated Osmium**, I used a **market-making strategy**
 
-Instead, I used an **anchored moving average**. This smoothed the average price over time and gave the bot a moving reference point instead of a static number.
+The goal was to quote around a fair reference price, capture the bid-ask spread, and manage inventory carefully.
 
-The idea was that Ash-Coated Osmium was volatile, but it still had structure. The moving average helped show when price was breaking away from its normal path.
+Instead of betting on one big directional move, the bot tried to make repeated small profits from the spread.
+
+Simple idea:
 
 ```text
-calculate anchored moving average
+estimate fair value / reference price
 
-if price breaks above the moving average:
-    buy / go long
+if ask is cheap enough:
+    buy
 
-if price breaks below the moving average:
-    sell / go short
+if bid is rich enough:
+    sell
+
+manage inventory so the bot does not get too long or too short
 ```
 
-So the strategy was not classic fixed-fair-value trading. It was closer to a moving-average breakout / mean-reversion hybrid, using the anchored average to smooth noise and guide direction.
+Ash-Coated Osmium was more volatile than Intarian Pepper Root, so inventory control mattered. The bot could not just keep buying or selling forever. It needed to stay balanced while capturing spread whenever the order book gave a good price.
 
 ### Intarian Pepper Root Strategy
 
@@ -151,6 +155,10 @@ if price breaks trend sharply:
 ```
 
 This let the bot ride the trend while still having emergency downside protection.
+### Charts for both assets:
+![Chart](image.png)
+
+
 
 ### Results
 
