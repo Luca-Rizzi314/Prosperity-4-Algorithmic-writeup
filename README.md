@@ -18,7 +18,6 @@ For the algorithmic challenge, we submitted a Python bot that read market data a
 - **Round 4:** trade data from market makers, retail traders, and informed traders.
 - **Round 5:** 50 different products across 10 bundles.
 
-The main lesson was simple: a good bot needs fair value, entries, exits, sizing, and risk control.
 
 ---
 
@@ -72,9 +71,7 @@ Across the rounds, my process was:
 6. Increase size when the signal was stronger.
 7. Avoid overfitting to the backtest.
 
-At first, I cared mostly about whether a strategy made money. Later, I cared more about **why** it made money.
-
-That was important because a backtest can lie. A strategy can look good on old data and still fail on new data. So I tried to move toward simple ideas that had a real reason behind them.
+no.7 was important because a backtest can lie. A strategy can look good on old data and still fail on new data. So I tried to move toward simple ideas that had a real reason behind them.
 
 ---
 
@@ -159,24 +156,8 @@ This let the bot ride the trend while still having emergency downside protection
 
 | Metric | Result |
 |---|---:|
-| Round 1 algorithmic PnL | [FILL IN] |
-| Rank after Round 1 | [FILL IN] |
-| Ash-Coated Osmium PnL | [FILL IN] |
-| Intarian Pepper Root PnL | [FILL IN] |
-| Final submitted version | [FILL IN] |
+| Round 1 algorithmic PnL |+95,000 XIRECs|
 
-### What I Learned
-
-- Different products need different strategies.
-- Osmium worked better as mean reversion.
-- Pepper Root worked better as trend following.
-- Strong trends still need emergency exits.
-
-### What I Could Have Done Better
-
-- Tune the mean-reversion bands better.
-- Test the flash-dump rule more.
-- Track when Pepper Root trend following should exit.
 
 ---
 
@@ -278,30 +259,8 @@ bid around 4K to keep more upside
 
 | Metric | Result |
 |---|---:|
-| Round 2 algorithmic PnL before MAF | [FILL IN] |
-| Market Access Fee bid | ~4,000 XIRECs per 25,000 ticks |
-| Estimated raw value of extra access | ~24,500 XIRECs total |
-| Estimated break-even bid | ~6,000 XIRECs per 25,000 ticks |
-| Estimated full-day break-even cost | ~24,000 XIRECs total |
+| Round 2 algorithmic PnL before MAF |+95,000 XIRECs|
 | Final Round 2 algorithmic PnL | [FILL IN] |
-| Rank after Round 2 | [FILL IN] |
-| Ash-Coated Osmium PnL | [FILL IN] |
-| Intarian Pepper Root PnL | [FILL IN] |
-
-### What I Learned
-
-- Extra market access has value, but overpaying kills the edge.
-- The bid was a game-theory problem, not just a trading problem.
-- The best bid is not the highest bid. It is the cheapest bid that still gets accepted.
-- Leaderboard PnL helped estimate what other teams might bid.
-
-### What I Could Have Done Better
-
-- Model the bidding game more formally.
-- Test how much the extra 25% volume actually improved fills.
-- Estimate other teams’ break-even points more carefully.
-
----
 
 ## Round 3: Velvet Fruit Extract Options and Hydrogel Packs
 
@@ -313,7 +272,6 @@ Round 3 had two underlying assets:
 - **Hydrogel Packs**
 
 There was also a full options book on **Velvet Fruit Extract**. All options had the same expiry, but different strikes:
-
 - 4,000
 - 4,500
 - 5,000
@@ -324,6 +282,8 @@ There was also a full options book on **Velvet Fruit Extract**. All options had 
 - 5,500
 - 6,000
 - 6,500
+
+in the options book there was also data for all the greeks and Implied volatility for the above strikes
 
 So Round 3 had two parts:
 
@@ -375,16 +335,6 @@ So even though the delta hedge helped isolate implied volatility, the IV model i
 
 That meant Round 3 only ended around **+1,000 XIRECs** because the market making on Velvet Fruit Extract and Hydrogel Packs recovered the losses.
 
-### Why 6,000 and 6,500 Mattered
-
-The **6,000** and **6,500** options looked rich compared with the rest of the chain.
-
-```text
-short the rich options
-hold while they stay rich
-reduce when the edge disappears
-```
-
 But because the fair-value equation was weak, I could not fully trust the signal. The trade idea was sensible, but the model behind it was not strong enough yet.
 
 ### Results
@@ -392,30 +342,7 @@ But because the fair-value equation was weak, I could not fully trust the signal
 | Metric | Result |
 |---|---:|
 | Round 3 algorithmic PnL | ~1,000 XIRECs |
-| Rank after Round 3 | [FILL IN] |
-| Final submitted version | [FILL IN] |
-| Velvet Fruit Extract market-making PnL | [FILL IN] |
-| Hydrogel Packs market-making PnL | [FILL IN] |
-| Velvet Fruit Extract options PnL | Negative |
-| Best product | [FILL IN] |
-| Worst product | [FILL IN] |
-
-### What I Learned
-
-- Delta hedging was needed to trade IV instead of just option direction.
-- My IV idea was right, but my equation was weak.
-- The options model lost money.
-- Market making the underlyings saved the round.
-- Spread capture can be very valuable.
-
-### What I Could Have Done Better
-
-- Add variance earlier.
-- Track options PnL separately from market-making PnL.
-- Trust the Black-Scholes-style model less.
-- Improve the fair-value equation before increasing size.
-
----
+| Rank after Round 3 | 2600th |
 
 ## Round 4: Same Products, Better Equation, Extra Trade Data
 
@@ -428,7 +355,6 @@ Round 4 used the **same products as Round 3**:
 - the same Velvet Fruit Extract options chain
 
 The options still had the same strikes:
-
 - 4,000
 - 4,500
 - 5,000
@@ -452,11 +378,11 @@ Round 4 had three main improvements:
 
 ### Assets Traded
 
-| Asset | What It Was | How I Used It |
+| What was traded | What It Was | How I Used It |
 |---|---|---|
 | Velvet Fruit Extract | Underlying asset | Market making / spread capture |
 | Hydrogel Packs | Underlying asset | Market making / spread capture |
-| VFE options chain | Options on Velvet Fruit Extract | IV fair value with variance |
+| VFE options chain | Options on Velvet Fruit Extract | IV fair value now with variance |
 | Trade data | Extra information | Trader classification and flow signals |
 
 ### Underlying Strategy: Market Making
@@ -590,32 +516,10 @@ This was much better than just using max size everywhere.
 | Metric | Result |
 |---|---:|
 | Round 4 algorithmic PnL | ~10,000 XIRECs |
-| Rank after Round 4 | [FILL IN] |
-| Final submitted version | [FILL IN] |
-| Velvet Fruit Extract market-making PnL | [FILL IN] |
-| Hydrogel Packs market-making PnL | [FILL IN] |
-| Velvet Fruit Extract options PnL | [FILL IN] |
-| Best option strike | [FILL IN] |
-| Worst option strike | [FILL IN] |
+| Rank after Round 4 | 1200th |
 
-### What I Learned
 
-- Delta hedging helped isolate the IV trade.
-- Variance made the options model much better.
-- Trade data helped show who to follow or fade.
-- Market making stayed a useful base.
-- Better model plus better sizing gave much better PnL.
-
-### What I Could Have Done Better
-
-- Use variance from the start.
-- Build trader labels earlier.
-- Track PnL by trader signal.
-- Stress-test the larger positions.
-
----
-
-## Round 5: Multi-Product Algorithm
+## Round 5: Multi-Product Basket Algorithm
 
 ### What the Round Was
 
@@ -625,61 +529,232 @@ There were **50 different products** to trade.
 
 They were split into **10 bundles**, with **5 products in each bundle**.
 
-The 10 bundles were:
+This was not one simple strategy anymore. It was a full portfolio problem.
 
-1. Microchip
-2. Sleep Pod
-3. Panel
-4. Pebbles
-5. UV Visor
-6. Translator
-7. Robots
-8. Snack Pack
-9. Galaxy Sands
-10. Oxygen Shake
+Every product needed a strategy choice:
 
-This was no longer just one strategy. It was a portfolio problem.
+- market making;
+- mean reversion;
+- trend following;
+- basket arbitrage;
+- spread trading;
+- passive quoting;
+- or avoiding the product if it was too noisy.
 
-Every product needed its own strategy choice. Some products were better for market making. Some were better for mean reversion. Some were better for trend following. Some were too noisy and needed to be traded lightly or ignored.
+The bundle structure helped because products inside the same bundle often had related behaviour. By comparing the five products inside each bundle, I could decide what kind of strategy made the most sense.
 
-The bundles helped because products inside the same bundle often had related behaviour. By comparing the five products inside a bundle, I could get clues about which strategy made sense.
+For example:
 
 ```text
-if products in a bundle move together → possible basket/spread idea
-if one product trends harder than the others → trend-following idea
-if prices keep snapping back → mean-reversion idea
-if spreads are stable → market-making idea
+if products in a bundle moved together → basket/spread strategy
+if one product trended harder → trend-following strategy
+if prices snapped back → mean-reversion strategy
+if spreads were stable → passive market-making strategy
 ```
 
-The goal was:
+The final combined script was:
 
 ```text
-classify all 50 products
-choose the right strategy type for each product
-compare products inside each bundle
-trade stronger signals bigger
-avoid weak/noisy products
-manage total risk
+552835_main_snackpack_v5_oxygen_v7_galaxy_v3.py
 ```
 
-### Full Product List
+The final bot avoided:
 
-| Bundle | Products |
-|---|---|
-| Microchip | Circle, Oval, Rectangle, Square, Triangle |
-| Sleep Pod | Cotton, Wool, Nylon, Polyester, Suede |
-| Panel | 1x2, 1x4, 2x2, 2x4, 4x4 |
-| Pebbles | Extra Small, Small, Medium, Large, Extra Large |
-| UV Visor | Amber, Magenta, Orange, Red, Yellow |
-| Translator | Astro Black, Eclipse Charcoal, Graphite Mist, Space Gray, Void Blue |
-| Robots | Dishes, Ironing, Laundry, Mopping, Vacuuming |
-| Snack Pack | Chocolate, Vanilla, Pistachio, Raspberry, Strawberry |
-| Galaxy Sands | Black Holes, Dark Matter, Planetary Rings, Solar Flares, Solar Winds |
-| Oxygen Shake | Chocolate, Evening Breath, Garlic, Mint, Morning Breath |
+- timestamp hardcoding;
+- day-specific logic;
+- PnL-based trading logic;
+- double-trading the same product in multiple modules.
+
+---
+
+### Bundle Strategy Summary
+
+| Bundle | Products | Strategy Used |
+|---|---|---|
+| **Panel** | 1x2, 1x4, 2x2, 2x4, 4x4 | Defensive trend following using fast/slow EMAs 
+| **Pebbles** | XS, S, M, L, XL | Fixed fair-value added basket arbitrage around total fair value of about 50,000
+| **Robots** | Dishes, Ironing, Laundry, Mopping, Vacuuming | Dynamic basket market making using EMA basket anchor and residual
+| **Snack Pack v5** | Chocolate, Vanilla, Pistachio, Raspberry, Strawberry | Hybrid pair shock fade + triad mean reversion 
+| **Oxygen Shake v7** | Chocolate, Evening Breath, Garlic, Mint, Morning Breath | Passive basket shock fade + SnackPack lead-lag signal
+| **Galaxy Sounds v3** | Black Holes, Dark Matter, Planetary Rings, Solar Flames, Solar Winds | Ring7 even-size passive market making
+| **Microchip** | Circle, Oval, Rectangle, Square, Triangle | Generic passive market making v2.3 
+| **Sleep Pod** | Cotton, Wool, Nylon, Polyester, Suede | Generic passive market making v2.3 
+| **Translator** | Astro Black, Eclipse Charcoal, Graphite Mist, Space Gray, Void Blue | Generic passive market making v2.3 
+| **UV Visor** | Amber, Magenta, Orange, Red, Yellow | Generic passive market making v2.3 
+---
+
+### Main Strategy Idea
+
+Because there were 50 products, I could not use one strategy for everything.
+
+The first job was to classify each bundle.
+
+For each bundle, I asked:
+
+```text
+Does this bundle trend?
+Does it mean revert?
+Can the five products form a basket?
+Can one product be priced from the others?
+Is this better for passive market making?
+Is this too noisy to trade aggressively?
+```
+
+The final bot used specialized modules for the bundles where I found stronger structure.
+
+Specialized modules were used for:
+
+- Panel;
+- Pebbles;
+- Robots;
+- Snack Pack;
+- Oxygen Shake;
+- Galaxy Sounds.
+
+Generic market making was used for:
+
+- Microchip;
+- Sleep Pod;
+- Translator;
+- UV Visor.
+
+
+### Panel: Defensive Trend Following
+
+Panel was a directional trend-following module.
+
+The bot calculated:
+
+- fast EMA;
+- slow EMA;
+- scale estimate.
+
+### Pebbles: Fixed Fair-Value Basket Strategy
+
+Pebbles was treated as a basket with a total fair value of about **50,000**.
+
+The idea was:
+
+```text
+if the full basket is cheap:
+    buy all Pebbles legs together
+
+if the full basket is rich:
+    sell all Pebbles legs together
+
+if there is no full-basket opportunity:
+    market make each Pebble around synthetic fair value
+```
+
+The synthetic fair value for one Pebble was based on:
+
+```text
+total basket fair value - mid price of the other Pebbles
+```
+
+This meant each Pebble could be priced using the rest of the bundle.
+
+
+### Robots: Dynamic Basket Market Making
+
+Robots used dynamic basket market making.
+
+The bot kept an EMA anchor for the total Robot basket.
+
+Then it calculated:
+
+```text
+basket residual = current basket value - EMA anchor
+```
+
+Simple logic:
+
+```text
+positive residual → basket looks rich → lean sell-side
+negative residual → basket looks cheap → lean buy-side
+```
+
+Each Robot product was quoted from a synthetic fair value based on the basket anchor and the other Robot mids.
+
+
+
+### Snack Pack v5: Hybrid Pair and Triad Strategy
+
+Snack Pack had two separate behaviours.
+
+Chocolate and Vanilla used a passive pair shock-fade strategy.
+
+Pistachio and Strawberry used a more active triad mean-reversion strategy, with Raspberry included in the signal but not forced into the same aggressive position.
+
+Simple structure:
+
+```text
+Chocolate / Vanilla → passive pair shock fade
+Pistachio / Strawberry → active triad mean reversion
+Raspberry → defensive only
+```
+
+### Oxygen Shake v7: Basket Fade plus SnackPack Lead-Lag
+
+Oxygen traded passively.
+
+It combined:
+
+1. Oxygen basket shock fade.
+2. SnackPack lead-lag context.
+3. Own-move fade for Chocolate and Evening Breath.
+4. Soft dynamic-risk edge widening.
+
+Simple idea:
+
+```text
+positive expected Oxygen move → raise fair value and favour bids
+negative expected Oxygen move → lower fair value and favour asks
+```
+
+
+### Galaxy Sounds v3: Ring7 Even-Size Passive Market Making
+
+Galaxy Sounds used a simple passive market-making module.
+
+The goal was to avoid over-filtering and keep the strategy clean.
+
+
+Planetary Rings used a wider edge because it needed more protection.
+
+Quote size depended on Galaxy basket shock strength:
+
+Galaxy did **not** use active crossing. It stayed passive.
+
+
+### Generic MM v2.3: Microchip, Sleep Pod, Translator, and UV Visor
+
+The generic market-making module traded:
+
+- Microchip;
+- Sleep Pod;
+- Translator;
+- UV Visor.
+
+These products used bundle-aware passive market making around the current mid.
+
+Generic MM settings:
+
+```text
+Microchip edge  = 2
+Sleep Pod edge  = 2
+Translator edge = 2
+UV Visor edge   = 4
+base size       = 3
+```
+
+The strategy did not cross the spread for entry. It quoted passively around fair value.
+
+
 
 ### Candlestick Chart Appendix
 
-I created a PDF with candlestick charts for all 50 Round 5 products.
+I also created a PDF with candlestick charts for all 50 Round 5 products.
 
 The charts show the products across **Day 2, Day 3, and Day 4**, with each candle built from **100 timestamps**.
 
@@ -689,244 +764,29 @@ This PDF should be attached as the chart appendix:
 round5_all_products_candlestick_charts (3).pdf
 ```
 
-### Main Strategy Idea
-
-Because there were 50 products, I could not use one strategy for everything.
-
-The first job was to identify what each product was doing.
-
-For each product, I had to ask:
-
-```text
-Is this a market-making product?
-Is this a mean-reversion product?
-Is this a trend-following product?
-Is this a spread/bundle product?
-Is this too noisy to trade heavily?
-```
-
-The bundle structure helped with this. Since each bundle had five related products, I could compare them against each other. If one product was moving differently from the rest of its bundle, that could be a signal. If all five moved together, that could suggest a bundle-level strategy.
-
-So the strategy was not just “trade 50 products.” It was:
-
-```text
-study each bundle
-compare the 5 products inside it
-pick the best strategy for each product
-size based on signal strength and risk
-```
-
-The final bot traded the stronger, cleaner signals and avoided weaker ones.
-
-### Snack Pack
-
-Snack Pack used a market-making / score-based strategy.
-
-The bot calculated a signal and used that signal to decide size.
-
-```python
-if score_abs >= 3:
-    size = 10
-elif score_abs >= 2:
-    size = 7
-elif score_abs >= 1:
-    size = 5
-else:
-    size = 3
-```
-
-Simple idea:
-
-```text
-stronger signal = bigger trade
-weaker signal = smaller trade
-```
-
-### Oxygen Shake
-
-Oxygen Shake followed a similar process to Snack Pack.
-
-I tested it by itself first, then increased size when the signal looked good.
-
-The aim was not random size. It was controlled aggression.
-
-### Galaxy Sands
-
-Galaxy Sands products were:
-
-- Black Holes
-- Dark Matter
-- Planetary Rings
-- Solar Flares
-- Solar Winds
-
-The strategy used the **v3 ring7 even-size** idea.
-
-The goal was to trade the relationship across the Galaxy products while keeping exposure balanced.
-
-### Panel
-
-Panel products were:
-
-- Panel 1x2
-- Panel 1x4
-- Panel 2x2
-- Panel 2x4
-- Panel 4x4
-
-Panel 2x2 looked especially trend-following.
-
-The final Panel idea used trend strength:
-
-```text
-normal trend  → target ±4
-strong trend  → target ±7
-extreme trend → target ±10
-```
-
-### Pebbles and Robots
-
-Pebbles products were:
-
-- Extra Small
-- Small
-- Medium
-- Large
-- Extra Large
-
-Robot products were:
-
-- Dishes
-- Ironing
-- Laundry
-- Mopping
-- Vacuuming
-
-Pebbles v6 and Robot v9 were added as separate modules.
-
-The main question was whether they improved the full bot, not just whether they looked good alone.
-
-### Other Bundles
-
-The other bundles were:
-
-- Microchip
-- Sleep Pod
-- UV Visor
-- Translator
-
-These were part of the 50-product universe and were useful for checking trend, volatility, and bundle behaviour.
-
-The candlestick charts helped compare them quickly.
-
-### Dynamic Risk and Sizing
-
-Round 5 made sizing very important.
-
-The bot should not use the same size everywhere. Size should depend on:
-
-- signal strength;
-- volatility;
-- spread;
-- liquidity;
-- current position;
-- product risk.
-
-```text
-strong signal + low risk = bigger size
-weak signal + high risk = smaller size or no trade
-```
-
-### Final Combined System
-
-The final Round 5 bot combined:
-
-- SnackPack v5;
-- Oxygen v7;
-- Galaxy v3 ring7 even size;
-- Panel v3;
-- Pebbles v6;
-- Robot v9;
-- market making;
-- trend following;
-- score-based sizing;
-- dynamic risk sizing.
-
-The goal was to trade many products at once without putting too much risk into one bundle.
+---
 
 ### Results
 
 | Metric | Result |
 |---|---:|
 | Round 5 algorithmic PnL | [FILL IN] |
-| Final algorithmic rank | [FILL IN] |
-| Final submitted script | [FILL IN] |
-| Snack Pack PnL | [FILL IN] |
-| Oxygen Shake PnL | [FILL IN] |
-| Galaxy Sands PnL | [FILL IN] |
-| Panel PnL | [FILL IN] |
-| Pebbles PnL | [FILL IN] |
-| Robots PnL | [FILL IN] |
-| Best bundle | [FILL IN] |
-| Worst bundle | [FILL IN] |
-
-### What I Learned
-
-- Round 5 was a portfolio problem.
-- All 50 products needed strategy classification.
-- Bundles helped compare related products.
-- Sizing mattered as much as signal quality.
-- Product-level PnL tracking was essential.
-
-### What I Could Have Done Better
-
-- Track PnL by bundle earlier.
-- Make the code more modular.
-- Track portfolio drawdown.
-- Use the candlestick charts earlier.
+| Final Round 5 rank | [FILL IN] |
 
 ---
 
-## 6. Final Algorithmic Results Summary
+# Final Lessons Learned
 
-| Round | Products | Main Strategy | Final Version | Algo PnL | Rank |
-|---|---|---|---|---:|---:|
-| Round 1 | Ash-Coated Osmium, Intarian Pepper Root | Anchored moving average + trend following | [FILL IN] | ~98,000 XIRECs | [FILL IN] |
-| Round 2 | Same as Round 1, plus Market Access Fee | Refined Round 1 strategy + MAF bidding | [FILL IN] | [FILL IN] | [FILL IN] |
-| Round 3 | Velvet Fruit Extract, Hydrogel Packs, VFE options chain | Market making + weak modified Black-Scholes IV model | [FILL IN] | ~1,000 XIRECs | [FILL IN] |
-| Round 4 | Same products, plus trade data | Market making + variance-adjusted IV model + trader classification | [FILL IN] | ~10,000 XIRECs | [FILL IN] |
-| Round 5 | 50 products across 10 bundles | Multi-product portfolio | [FILL IN] | [FILL IN] | [FILL IN] |
+Overall, the biggest lesson from IMC Prosperity 4 was that a strong algorithm needs more than a good signal.  
+Each product needed the right strategy: market making, mean reversion, trend following, basket trading, or options pricing.  
+Backtests were useful, but they were not enough, because a strategy could look good on old data and fail on hidden data.  
+Fair value was the core idea across every round, whether I was quoting spreads, pricing options, or comparing basket products.  
+Risk control mattered just as much as profit, especially with position limits, inventory, delta hedging, and sizing.  
+Round 3 taught me that a model can sound right and still trade badly if it does not fit the actual market.  
+Round 4 showed how improving the model with variance and trade data could make the same idea much stronger.  
+Round 5 showed that a final bot is really a portfolio of strategies, not one single strategy.  
+The best improvements came from making the logic simpler, cleaner, and easier to explain.  
+The final takeaway was: know why the trade works, know how big it should be, and know when to get out.
 
----
 
-## 7. Final Reflection
 
-Round 1 taught me that even simple products can need different strategies. Ash-Coated Osmium needed an anchored moving-average approach, while Intarian Pepper Root was better for trend following with emergency downside protection.
-
-Round 2 taught me that trading performance was only part of the game. The Market Access Fee was a game-theory problem: bid enough to get extra flow, but not so much that the fee eats the profit.
-
-Round 3 taught me that a model can sound right and still trade badly. The modified Black-Scholes IV equation was not strong enough, and the options side lost money. The round only ended positive because market making on Velvet Fruit Extract and Hydrogel Packs helped recover the losses.
-
-Round 4 was the real improvement. Adding variance made the options equation much better. It helped the bot price the Velvet Fruit Extract options more realistically. Trade data also helped because I could identify market makers, noise traders, and informed traders by their trading habits.
-
-Round 5 was a portfolio round. There were 50 products across 10 bundles, and each product needed a strategy choice: market making, mean reversion, trend following, spread trading, or avoiding it if it was too noisy. The bundle structure helped because comparing the five products inside each bundle gave clues about which strategy to use.
-
-The biggest lesson overall was:
-
-> A good algorithm is not just about finding a trade. It is about knowing why the trade works, how big it should be, and when to get out.
-
----
-
-## 8. Fill-In Checklist
-
-- [ ] Fill in Round 1 PnL and rank.
-- [ ] Fill in Ash-Coated Osmium and Intarian Pepper Root PnL.
-- [ ] Fill in Round 2 PnL and rank.
-- [ ] Confirm whether the ~4,000 XIREC MAF bid was accepted.
-- [ ] Confirm exact Round 3 rank.
-- [ ] Confirm exact Round 4 rank.
-- [ ] Fill in Round 5 PnL.
-- [ ] Fill in final algorithmic rank.
-- [ ] Add product-by-product PnL.
-- [ ] Add final submitted script names.
-- [ ] Attach `round5_all_products_candlestick_charts (3).pdf` as the Round 5 chart appendix.
