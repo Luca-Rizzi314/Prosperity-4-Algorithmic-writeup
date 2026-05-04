@@ -279,7 +279,7 @@ Round 3 had two underlying assets:
 - **Velvet Fruit Extract**
 - **Hydrogel Packs**
 
-There was also a full options book on **Velvet Fruit Extract**. All options had the same expiry, but different strikes:
+There was also a full European options book on **Velvet Fruit Extract**. All options had the same expiry, but different strikes:
 - 4,000
 - 4,500
 - 5,000
@@ -291,7 +291,7 @@ There was also a full options book on **Velvet Fruit Extract**. All options had 
 - 6,000
 - 6,500
 
-in the options book there was also data for all the greeks and Implied volatility for the above strikes
+in the options book there was also data for all the greeks, Implied volatility ect.. for the above strikes
 
 So Round 3 had two parts:
 
@@ -417,9 +417,9 @@ That was the real fix.
 
 Options are about movement. If the underlying moves around a lot, the option should be worth more. If the model does not account for that properly, it will misprice the whole chain as what happened in round 3.
 
-We were still **delta hedging** the options with Velvet Fruit Extract. 
+Adding variance made the model much more realistic. The model started reacting real movement and not just noise.
 
-Adding variance made the model much more realistic. It stopped treating the market like a perfect textbook example and started reacting to how Velvet Fruit Extract actually moved.
+We were still **delta hedging** the options with Velvet Fruit Extract. 
 
 This made a huge difference. Round 3 made about **1,000 XIRECs**, and the options side was negative. Round 4 made about **10,000 XIRECs** because the model understood the options better.
 
@@ -434,6 +434,9 @@ to:
 ```text
 modified Black-Scholes fair value + variance adjustment
 ```
+### Here is the Fair IV over the Contracts IV (according to our varienced black scholes model)
+
+<img src="zoomed_contract_iv_and_black_scholes_iv_5000_5500.png" width="500">
 
 That gave a better IV edge.
 
