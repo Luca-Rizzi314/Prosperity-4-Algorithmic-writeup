@@ -413,9 +413,7 @@ That was the real fix.
 
 <img src="Screenshot%202026-05-04%20165658.png" width="500">
 
-Options are about movement. If the underlying moves around a lot, the option should be worth more. If the model does not account for that properly, it will misprice the whole chain as what happened in round 3.
-
-Adding variance made the model much more realistic. The model started reacting real movement and not just noise.
+Adding variance made the model much more realistic. The model started reacting to real significant movement and not just noise.
 
 We were still **delta hedging** the options with Velvet Fruit Extract. 
 
@@ -436,7 +434,7 @@ modified Black-Scholes fair value + variance adjustment
 
 <img src="zoomed_contract_iv_and_black_scholes_iv_5000_5500.png" width="500">
 
-That gave a better IV edge.
+As you can see in the chart above the aim was to trade the mispricings of the contracts implied volatility back to what the equasion considers as fair value
 
 ### Rich-IV Strategy
 
@@ -566,16 +564,16 @@ The final bot avoided:
 
 | Bundle | Products | Strategy Used |
 |---|---|---|
-| **Panel** | 1x2, 1x4, 2x2, 2x4, 4x4 | Defensive trend following using fast/slow EMAs 
+| **Panel** | 1x2, 1x4, 2x2, 2x4, 4x4 | trend following using fast/slow EMAs 
 | **Pebbles** | XS, S, M, L, XL | Fixed fair-value added basket arbitrage around total fair value of about 50,000
-| **Robots** | Dishes, Ironing, Laundry, Mopping, Vacuuming | Dynamic basket market making using EMA basket anchor and residual
-| **Snack Pack v5** | Chocolate, Vanilla, Pistachio, Raspberry, Strawberry | Hybrid pair shock fade + triad mean reversion 
-| **Oxygen Shake v7** | Chocolate, Evening Breath, Garlic, Mint, Morning Breath | Passive basket shock fade + SnackPack lead-lag signal
-| **Galaxy Sounds v3** | Black Holes, Dark Matter, Planetary Rings, Solar Flames, Solar Winds | Ring7 even-size passive market making
-| **Microchip** | Circle, Oval, Rectangle, Square, Triangle | Generic passive market making v2.3 
-| **Sleep Pod** | Cotton, Wool, Nylon, Polyester, Suede | Generic passive market making v2.3 
-| **Translator** | Astro Black, Eclipse Charcoal, Graphite Mist, Space Gray, Void Blue | Generic passive market making v2.3 
-| **UV Visor** | Amber, Magenta, Orange, Red, Yellow | Generic passive market making v2.3 
+| **Robots** | Dishes, Ironing, Laundry, Mopping, Vacuuming | Dynamic basket market making 
+| **Snack Pack** | Chocolate, Vanilla, Pistachio, Raspberry, Strawberry |  mean reversion 
+| **Oxygen Shake** | Chocolate, Evening Breath, Garlic, Mint, Morning Breath |  basket shock fade + SnackPack lead-lag signal
+| **Galaxy Sounds** | Black Holes, Dark Matter, Planetary Rings, Solar Flames, Solar Winds | passive market making
+| **Microchip** | Circle, Oval, Rectangle, Square, Triangle | passive market making  
+| **Sleep Pod** | Cotton, Wool, Nylon, Polyester, Suede | passive market making 
+| **Translator** | Astro Black, Eclipse Charcoal, Graphite Mist, Space Gray, Void Blue | passive market making 
+| **UV Visor** | Amber, Magenta, Orange, Red, Yellow | passive market making 
 ---
 ### View Charts for each product here:
 [View Round 5 Candlestick Charts.PDF](round5_all_products_candlestick_charts.pdf)
