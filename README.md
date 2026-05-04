@@ -531,7 +531,7 @@ They were split into **10 bundles**, with **5 products in each bundle**.
 
 This was not one simple strategy anymore. It was a full portfolio problem.
 
-Every product needed a strategy choice:
+Every bundle needed a strategy choice:
 
 - market making;
 - mean reversion;
@@ -541,22 +541,6 @@ Every product needed a strategy choice:
 - passive quoting;
 - or avoiding the product if it was too noisy.
 
-The bundle structure helped because products inside the same bundle often had related behaviour. By comparing the five products inside each bundle, I could decide what kind of strategy made the most sense.
-
-For example:
-
-```text
-if products in a bundle moved together → basket/spread strategy
-if one product trended harder → trend-following strategy
-if prices snapped back → mean-reversion strategy
-if spreads were stable → passive market-making strategy
-```
-
-The final combined script was:
-
-```text
-552835_main_snackpack_v5_oxygen_v7_galaxy_v3.py
-```
 
 The final bot avoided:
 
@@ -582,7 +566,8 @@ The final bot avoided:
 | **Translator** | Astro Black, Eclipse Charcoal, Graphite Mist, Space Gray, Void Blue | Generic passive market making v2.3 
 | **UV Visor** | Amber, Magenta, Orange, Red, Yellow | Generic passive market making v2.3 
 ---
-
+### View Charts for each product here:
+[View Round 5 Candlestick Charts.PDF](round5_all_products_candlestick_charts.pdf)
 ### Main Strategy Idea
 
 Because there were 50 products, I could not use one strategy for everything.
