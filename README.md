@@ -267,8 +267,7 @@ bid around 4K to keep more upside
 
 | Metric | Result |
 |---|---:|
-| Round 2 algorithmic PnL before MAF |+95,000 XIRECs|
-| Final Round 2 algorithmic PnL | [FILL IN] |
+| Final Round 2 algorithmic PnL | +96,600 |
 
 ## Round 3: Velvet Fruit Extract Options and Hydrogel Packs
 
