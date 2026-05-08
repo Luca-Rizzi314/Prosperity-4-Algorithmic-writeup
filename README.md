@@ -12,6 +12,8 @@ For the actual scoring, the trading algorithm was tested on hidden full evaluati
 
 For the algorithmic challenge, we submitted a Python bot that read market data and placed buy/sell orders.
 
+My team placed in the top 5% of teams worldwide, (899th out of 18,803 total teams)
+
 - **Round 1:** trading ash coated osmium and intarian pepper root.
 - **Round 2:** same products as round 1, plus the Market Access Fee auction.
 - **Round 3:** Velvet Fruit Extract options book.
@@ -349,7 +351,7 @@ But because the fair-value equation was weak and did not include varience, alot 
 
 | Metric | Result |
 |---|---:|
-| Round 3 algorithmic PnL | ~1,000 XIRECs |
+| Round 3 algorithmic PnL | +1,000 XIRECs |
 | Rank after Round 3 | 2600th |
 
 ## Round 4: Same Products, Better Equation, Extra Trade Data
@@ -524,7 +526,7 @@ This was much better than just using max size everywhere.
 
 | Metric | Result |
 |---|---:|
-| Round 4 algorithmic PnL | ~10,000 XIRECs |
+| Round 4 algorithmic PnL | +10,000 XIRECs |
 | Rank after Round 4 | 1200th |
 
 
@@ -741,8 +743,8 @@ The strategy did not cross the spread for entry. It quoted passively around fair
 
 | Metric | Result |
 |---|---:|
-| Round 5  PnL | [FILL IN] |
-| Final Round 5 rank | [FILL IN] |
+| Round 5  PnL | +12,800 XIRECs |
+| Final Round 5 rank | 899th |
 
 ---
 
